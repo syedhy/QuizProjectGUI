@@ -1,0 +1,120 @@
+.root {
+
+    /* =====================================================
+       BRAND COLORS
+    ===================================================== */
+
+    -color-primary: #22D3EE;
+    -color-secondary: #8B5CF6;
+    -color-accent: #EC4899;
+
+    -color-primary-soft: #67E8F9;
+
+    /* =====================================================
+       TEXT COLORS
+    ===================================================== */
+
+    -color-text-primary: #FFFFFF;
+    -color-text-secondary: #94A3B8;
+    -color-text-muted: #CBD5E1;
+    -color-text-dark-muted: #64748B;
+
+    -color-error-text: #FCA5A5;
+    -color-success-text: #DCFCE7;
+    -color-danger-text: #FEE2E2;
+
+    /* =====================================================
+       BACKGROUND COLORS
+    ===================================================== */
+
+    -color-bg: #020617;
+
+    -color-surface: rgba(15,23,42,0.92);
+    -color-surface-soft: rgba(15,23,42,0.82);
+    -color-surface-light: rgba(30,41,59,0.96);
+    -color-surface-hover: rgba(30,41,59,0.98);
+
+    -color-card: rgba(15,23,42,0.94);
+    -color-card-soft: rgba(15,23,42,0.72);
+    -color-card-glass: rgba(255,255,255,0.055);
+    -color-card-glass-hover: rgba(255,255,255,0.085);
+
+    -color-overlay-dark: rgba(2,6,23,0.82);
+    -color-overlay-loading: rgba(2,6,23,0.86);
+
+    /* =====================================================
+       BORDER COLORS
+    ===================================================== */
+
+    -color-border: rgba(148,163,184,0.35);
+    -color-border-soft: rgba(148,163,184,0.24);
+    -color-border-medium: rgba(148,163,184,0.45);
+    -color-border-glass: rgba(255,255,255,0.14);
+    -color-border-glass-soft: rgba(255,255,255,0.16);
+
+    -color-border-primary: rgba(34,211,238,0.55);
+    -color-border-primary-soft: rgba(34,211,238,0.35);
+    -color-border-primary-medium: rgba(34,211,238,0.62);
+    -color-border-primary-strong: rgba(34,211,238,0.75);
+
+    /* =====================================================
+       STATUS COLORS
+    ===================================================== */
+
+    -color-success: #22C55E;
+    -color-danger: #EF4444;
+    -color-warning: #F59E0B;
+
+    -color-success-bg: rgba(34,197,94,0.16);
+    -color-success-bg-strong: rgba(34,197,94,0.34);
+    -color-success-border: rgba(74,222,128,0.62);
+
+    -color-danger-bg: rgba(239,68,68,0.16);
+    -color-danger-bg-strong: rgba(239,68,68,0.34);
+    -color-danger-bg-hover: rgba(239,68,68,0.28);
+    -color-danger-border: rgba(248,113,113,0.58);
+    -color-danger-border-strong: #F87171;
+
+    /* =====================================================
+       CHIPS AND BADGES
+    ===================================================== */
+
+    -color-chip-primary-bg: rgba(34,211,238,0.12);
+    -color-chip-primary-border: rgba(34,211,238,0.45);
+
+    -color-chip-secondary-bg: rgba(139,92,246,0.42);
+
+    /* =====================================================
+       PROGRESS BAR
+    ===================================================== */
+
+    -color-progress-track: rgba(255,255,255,0.10);
+
+    /* =====================================================
+       SHADOW / GLOW COLORS
+    ===================================================== */
+
+    -color-shadow-dark: rgba(0,0,0,0.42);
+    -color-shadow-soft: rgba(0,0,0,0.28);
+    -color-shadow-dashboard: rgba(0,0,0,0.36);
+
+    -color-glow-primary: rgba(34,211,238,0.22);
+    -color-glow-primary-soft: rgba(34,211,238,0.16);
+    -color-glow-success: rgba(34,197,94,0.20);
+    -color-glow-danger: rgba(239,68,68,0.20);
+
+    /* =====================================================
+       CHART COLORS
+    ===================================================== */
+
+    -color-chart-label: #FFFFFF;
+
+    /* =====================================================
+       INPUT COLORS
+    ===================================================== */
+
+    -color-input-bg: rgba(15,23,42,0.95);
+    -color-input-bg-soft: rgba(15,23,42,0.82);
+    -color-input-border: rgba(148,163,184,0.40);
+    -color-input-prompt: #94A3B8;
+}

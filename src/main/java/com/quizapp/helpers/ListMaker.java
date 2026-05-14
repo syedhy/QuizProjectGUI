@@ -4,14 +4,27 @@ import java.io.*;
 import java.util.*;
 
 public class ListMaker {
+
     public static List<Question> makeList(String filePath) {
         List<Question> questions = new ArrayList<>();
 
-        File file = new File(filePath);
+        try {
+            BufferedReader br;
 
-        try (BufferedReader br = file.exists()
-                ? new BufferedReader(new FileReader(file))
-                : new BufferedReader(new InputStreamReader(ListMaker.class.getClassLoader().getResourceAsStream(filePath)))) {
+            File file = new File(filePath);
+
+            if (file.exists()) {
+                br = new BufferedReader(new FileReader(file));
+            } else {
+                InputStream stream = ListMaker.class.getClassLoader().getResourceAsStream(filePath);
+
+                if (stream == null) {
+                    System.err.println("Question file not found: " + filePath);
+                    return questions;
+                }
+
+                br = new BufferedReader(new InputStreamReader(stream));
+            }
 
             String line;
 
@@ -22,6 +35,9 @@ public class ListMaker {
                     questions.add(new Question(parts[0] , Arrays.copyOfRange(parts , 1 , 5) , parts[5]));
                 }
             }
+
+            br.close();
+
         } catch (Exception e) {
             System.err.println("Error reading questions: " + e.getMessage());
         }

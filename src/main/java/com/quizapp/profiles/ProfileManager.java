@@ -12,6 +12,7 @@ import org.dizitart.no2.mvstore.MVStoreModule;
 import com.quizapp.data.AppData;
 
 public class ProfileManager {
+
     private static Nitrite openDatabase() {
         AppData.ensureGeneratedDataFolder();
 
@@ -19,9 +20,7 @@ public class ProfileManager {
                 .filePath(AppData.DB_FILE.toString())
                 .build();
 
-        return Nitrite.builder()
-                .loadModule(storeModule)
-                .openOrCreate();
+        return Nitrite.builder().loadModule(storeModule).openOrCreate();
     }
 
     private static NitriteCollection getCollection(Nitrite db) {
@@ -77,6 +76,15 @@ public class ProfileManager {
         }
     }
 
+    public static void deleteProfile(String name) {
+        if (name == null || name.isBlank() || name.equalsIgnoreCase("Guest")) return;
+
+        try (Nitrite db = openDatabase()) {
+            NitriteCollection collection = getCollection(db);
+            collection.remove(FluentFilter.where("name").eq(name));
+        }
+    }
+
     private static Document toDocument(Profile profile) {
         return Document.createDocument("name" , profile.getName())
                 .put("elo" , profile.getElo())
@@ -100,17 +108,14 @@ public class ProfileManager {
         Profile profile = new Profile(document.get("name" , String.class));
 
         profile.setElo(getInt(document , "elo" , 1000));
-
         profile.setRankedGames(getInt(document , "rankedGames" , 0));
         profile.setRankedWins(getInt(document , "rankedWins" , 0));
         profile.setRankedLosses(getInt(document , "rankedLosses" , 0));
         profile.setRankedTotalScore(getInt(document , "rankedTotalScore" , 0));
         profile.setRankedBestScore(getInt(document , "rankedBestScore" , 0));
-
         profile.setTotalGames(getInt(document , "totalGames" , 0));
         profile.setTotalQuestions(getInt(document , "totalQuestions" , 0));
         profile.setTotalCorrect(getInt(document , "totalCorrect" , 0));
-
         profile.setTimedGames(getInt(document , "timedGames" , 0));
         profile.setSurvivalGames(getInt(document , "survivalGames" , 0));
         profile.setSuddenDeathGames(getInt(document , "suddenDeathGames" , 0));

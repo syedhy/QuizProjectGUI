@@ -3,32 +3,91 @@ package com.quizapp.modes.llmmode.helpers;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizParser {
-    public static List<String> extractValidQuestions(String raw) {
-        List<String> validQuestions = new ArrayList<>();
+import com.quizapp.helpers.Question;
 
-        if (raw == null || raw.isEmpty()) return validQuestions;
+public class QuizParser {
+
+    public static List<Question> parseQuestions(String raw) {
+        List<Question> questions = new ArrayList<>();
+
+        if (raw == null || raw.isBlank()) {
+            return questions;
+        }
 
         String[] lines = raw.split("\\R");
 
         for (String line : lines) {
-            line = line.trim();
+            line = cleanLine(line);
 
-            if (line.isEmpty() || !line.contains("@")) continue;
+            if (line.isBlank() || !line.contains("@")) {
+                continue;
+            }
 
             String[] parts = line.split("@");
 
-            if (parts.length >= 6) {
-                String answer = parts[parts.length - 1].trim().toUpperCase();
-
-                if (answer.matches("A|B|C|D")) {
-                    validQuestions.add(line);
-                }
+            if (parts.length < 6) {
+                continue;
             }
 
-            if (validQuestions.size() == 10) break;
+            String questionText = parts[0].trim();
+            String optionA = parts[1].trim();
+            String optionB = parts[2].trim();
+            String optionC = parts[3].trim();
+            String optionD = parts[4].trim();
+            String answer = parts[5].trim().toUpperCase();
+
+            if (questionText.isBlank()
+                    || optionA.isBlank()
+                    || optionB.isBlank()
+                    || optionC.isBlank()
+                    || optionD.isBlank()
+                    || !answer.matches("[ABCD]")) {
+                continue;
+            }
+
+            questions.add(
+                    new Question(
+                            questionText,
+                            new String[]{optionA, optionB, optionC, optionD},
+                            answer
+                    )
+            );
+
+            if (questions.size() == 10) {
+                break;
+            }
+        }
+
+        return questions;
+    }
+
+    public static List<String> extractValidQuestions(String raw) {
+        List<String> validQuestions = new ArrayList<>();
+
+        for (Question question : parseQuestions(raw)) {
+            validQuestions.add(
+                    question.question
+                            + " @ " + question.options[0]
+                            + " @ " + question.options[1]
+                            + " @ " + question.options[2]
+                            + " @ " + question.options[3]
+                            + " @ " + question.answer
+            );
         }
 
         return validQuestions;
+    }
+
+    private static String cleanLine(String line) {
+        if (line == null) {
+            return "";
+        }
+
+        return line
+                .replace("`", "")
+                .replace("*", "")
+                .replace("•", "")
+                .replaceFirst("^\\d+\\.\\s*", "")
+                .trim();
     }
 }
