@@ -155,6 +155,12 @@ public class PhoneQuizHostScreen extends StackPane {
         if (state.getAnswerVersion() != lastSeenAnswerVersion) {
             lastSeenAnswerVersion = state.getAnswerVersion();
             lastFeedbackShownAt = System.currentTimeMillis();
+
+            if (state.wasLastAnswerCorrect()) {
+                com.quizapp.gui.SoundManager.playCorrect();
+            } else {
+                com.quizapp.gui.SoundManager.playWrong();
+            }
         }
 
         long now = System.currentTimeMillis();

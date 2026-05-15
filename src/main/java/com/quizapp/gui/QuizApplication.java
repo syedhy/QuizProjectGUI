@@ -1,6 +1,6 @@
 package com.quizapp.gui;
 import com.quizapp.gui.screens.SplashScreen;
-
+import com.quizapp.gui.SoundManager;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -50,6 +50,7 @@ public class QuizApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.centerOnScreen();
+        SoundManager.startMusic();
         stage.show();
     }
 

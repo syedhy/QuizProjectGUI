@@ -159,7 +159,11 @@ public class PvpQuizScreen extends StackPane {
 
         String correctLetter = q.answer.trim().toUpperCase();
         boolean correct = correctLetter.equalsIgnoreCase(selectedLetter);
-
+        if (correct) {
+            com.quizapp.gui.SoundManager.playCorrect();
+        } else {
+            com.quizapp.gui.SoundManager.playWrong();
+        }
         if (correct) {
             if (playerTurn == 1) playerOneScore++;
             else playerTwoScore++;

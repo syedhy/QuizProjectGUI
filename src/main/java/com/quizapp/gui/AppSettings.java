@@ -3,7 +3,7 @@ package com.quizapp.gui;
 public class AppSettings {
 
     private static boolean animationsEnabled = true;
-    private static boolean musicEnabled = false;
+    private static boolean musicEnabled = true;
 
     public static boolean isAnimationsEnabled() {
         return animationsEnabled;

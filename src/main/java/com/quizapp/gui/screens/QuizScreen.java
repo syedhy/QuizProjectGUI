@@ -298,6 +298,13 @@ private void highlightSelectedOption() {
 
         String correctLetter = q.answer.trim().toUpperCase();
         boolean correct = correctLetter.equalsIgnoreCase(selectedLetter);
+
+        if (correct) {
+            com.quizapp.gui.SoundManager.playCorrect();
+        } else {
+            com.quizapp.gui.SoundManager.playWrong();
+        }
+        
         attemptedQuestions++;
 
         if (!correct) {

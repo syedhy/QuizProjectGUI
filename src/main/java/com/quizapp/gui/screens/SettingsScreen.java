@@ -46,7 +46,15 @@ public class SettingsScreen extends StackPane {
         CheckBox musicToggle = new CheckBox("Music Enabled");
         musicToggle.getStyleClass().add("settings-toggle");
         musicToggle.setSelected(AppSettings.isMusicEnabled());
-        musicToggle.setOnAction(e -> AppSettings.setMusicEnabled(musicToggle.isSelected()));
+        musicToggle.setOnAction(e -> {
+            AppSettings.setMusicEnabled(musicToggle.isSelected());
+
+            if (musicToggle.isSelected()) {
+                com.quizapp.gui.SoundManager.startMusic();
+            } else {
+                com.quizapp.gui.SoundManager.stopMusic();
+            }
+        });
 
         CheckBox animationToggle = new CheckBox("Animations Enabled");
         animationToggle.getStyleClass().add("settings-toggle");
