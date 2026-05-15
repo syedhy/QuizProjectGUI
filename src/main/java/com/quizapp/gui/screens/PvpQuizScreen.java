@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 
 public class PvpQuizScreen extends StackPane {
 
+    @SuppressWarnings("unused")
     private final QuizModeConfig config;
     private final List<Question> questions;
 

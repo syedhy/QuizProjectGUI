@@ -1,6 +1,7 @@
 package com.quizapp.gui;
 
 import com.quizapp.gui.screens.ProfileSelectScreen;
+import com.quizapp.gui.screens.SplashScreen;
 
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -22,9 +23,9 @@ public class QuizApplication extends Application {
         NavigationManager.setStage(stage);
 
         Scene scene = new Scene(
-                new ProfileSelectScreen(),
-                1600,
-                950
+                new SplashScreen() ,
+                1700,
+                1000
         );
 
         scene.getStylesheets().addAll(

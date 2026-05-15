@@ -1633,3 +1633,45 @@
 .llm-topic-input {
     -fx-prompt-text-fill: rgba(255 , 255 , 255 , 0.30);
 }
+
+.splash-badge {
+    -fx-background-color: -color-chip-primary-bg;
+    -fx-border-color: -color-chip-primary-border;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-text-fill: -color-primary-soft;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 24 10 24;
+}
+
+.splash-title {
+    -fx-text-fill: -color-text-primary;
+    -fx-font-size: 96px;
+    -fx-font-weight: 900;
+    -fx-effect: dropshadow(gaussian , -color-glow-primary , 42 , 0.35 , 0 , 0);
+}
+
+.splash-subtitle {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.splash-progress {
+    -fx-pref-height: 18;
+    -fx-min-height: 18;
+    -fx-max-height: 18;
+}
+
+.splash-progress .track {
+    -fx-background-color: -color-progress-track;
+    -fx-background-radius: 999;
+}
+
+.splash-progress .bar {
+    -fx-background-color: linear-gradient(to right , -color-primary , -color-secondary , -color-accent);
+    -fx-background-radius: 999;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(gaussian , -color-glow-primary , 20 , 0.30 , 0 , 0);
+}
