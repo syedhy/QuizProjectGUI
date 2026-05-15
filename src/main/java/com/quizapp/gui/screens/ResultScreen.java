@@ -1,15 +1,11 @@
 package com.quizapp.gui.screens;
 
-import java.util.List;
-
 import com.quizapp.gui.NavigationManager;
 import com.quizapp.gui.QuizModeConfig;
 import com.quizapp.gui.QuizResultData;
 import com.quizapp.gui.components.GlassCard;
 import com.quizapp.gui.components.StatCard;
 import com.quizapp.gui.effects.AnimatedBackground;
-import com.quizapp.helpers.ListMaker;
-import com.quizapp.helpers.Question;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -46,7 +42,7 @@ public class ResultScreen extends StackPane {
         statsRow.setAlignment(Pos.CENTER);
 
         statsRow.getChildren().addAll(
-                new StatCard("Accuracy" , String.format("%.1f%%" , result.getAccuracy())),
+                new StatCard("Accuracy" , String.format("%.1f %%" , result.getAccuracy())),
                 new StatCard("Correct" , String.valueOf(result.getCorrectAnswers())),
                 new StatCard("Wrong" , String.valueOf(result.getWrongAnswers()))
         );
@@ -58,7 +54,14 @@ public class ResultScreen extends StackPane {
             Label eloTitle = new Label("Ranked Rating Update");
             eloTitle.getStyleClass().add("elo-result");
 
-            Label eloChange = new Label(result.getOldElo() + "  →  " + result.getNewElo() + "  (" + formatEloChange(result.getEloChange()) + ")");
+            Label eloChange = new Label(
+                    result.getOldElo()
+                            + "  →  "
+                            + result.getNewElo()
+                            + "  ("
+                            + formatEloChange(result.getEloChange())
+                            + ")"
+            );
             eloChange.getStyleClass().add("elo-result-large");
 
             eloBox.getChildren().addAll(eloTitle , eloChange);
@@ -71,8 +74,11 @@ public class ResultScreen extends StackPane {
         retry.getStyleClass().add("primary-button");
 
         retry.setOnAction(e -> {
-            List<Question> questions = ListMaker.makeList("Data/GeneralKnowledge/easy.txt");
-            NavigationManager.goTo(new QuizScreen(config , questions));
+            if (config.getModeName().equals("LLM Mode")) {
+                NavigationManager.goTo(new LLMSetupScreen());
+            } else {
+                NavigationManager.goTo(new QuizSetupScreen(config));
+            }
         });
 
         Button modes = new Button("Choose Mode");

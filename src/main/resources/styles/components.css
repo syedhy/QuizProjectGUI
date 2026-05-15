@@ -1630,3 +1630,6 @@
         8
     );
 }
+.llm-topic-input {
+    -fx-prompt-text-fill: rgba(255 , 255 , 255 , 0.30);
+}

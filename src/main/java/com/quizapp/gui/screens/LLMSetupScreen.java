@@ -35,7 +35,7 @@ public class LLMSetupScreen extends StackPane {
 
         GlassCard card = new GlassCard();
 
-        VBox content = new VBox(26);
+        VBox content = new VBox(24);
         content.setAlignment(Pos.CENTER);
 
         Label title = new Label("AI Quiz Generator");
@@ -44,27 +44,23 @@ public class LLMSetupScreen extends StackPane {
         Label subtitle = new Label("Generate custom questions from any topic");
         subtitle.getStyleClass().add("setup-subtitle");
 
-        Label topicTitle = new Label("🧠  ENTER TOPIC");
+        Label topicTitle = new Label("ENTER TOPIC");
         topicTitle.getStyleClass().add("setup-section-title");
 
         TextField topicField = new TextField();
-        topicField.setPromptText("Example : Java OOP , Graph Theory , World History");
+        topicField.setPromptText("Example  :  Java  , World History , Cartoons");
         topicField.getStyleClass().add("llm-topic-input");
         topicField.setMaxWidth(760);
 
-        Label difficultyTitle = new Label("⚡  CHOOSE DIFFICULTY");
+        Label difficultyTitle = new Label("CHOOSE DIFFICULTY");
         difficultyTitle.getStyleClass().add("setup-section-title");
 
-        HBox difficultyRow = new HBox(20);
-        difficultyRow.setAlignment(Pos.CENTER);
+        TextField customDifficultyField = new TextField();
+        customDifficultyField.setPromptText("Example  :  College exam level , Tricky , Beginner friendly");
+        customDifficultyField.getStyleClass().add("llm-topic-input");
+        customDifficultyField.setMaxWidth(760);
 
-        Button easyButton = createSelectButton("Easy");
-        Button mediumButton = createSelectButton("Medium");
-        Button hardButton = createSelectButton("Hard");
-
-        difficultyRow.getChildren().addAll(easyButton , mediumButton , hardButton);
-
-        Label engineTitle = new Label("🤖  CHOOSE AI ENGINE");
+        Label engineTitle = new Label("CHOOSE AI ENGINE");
         engineTitle.getStyleClass().add("setup-section-title");
 
         HBox engineRow = new HBox(20);
@@ -75,29 +71,9 @@ public class LLMSetupScreen extends StackPane {
 
         engineRow.getChildren().addAll(geminiButton , gemmaButton);
 
-        final String[] selectedDifficulty = {"Medium"};
         final String[] selectedEngine = {"Gemini"};
 
-        setSelected(mediumButton);
         setSelected(geminiButton);
-
-        easyButton.setOnAction(e -> {
-            selectedDifficulty[0] = "Easy";
-            clearSelection(easyButton , mediumButton , hardButton);
-            setSelected(easyButton);
-        });
-
-        mediumButton.setOnAction(e -> {
-            selectedDifficulty[0] = "Medium";
-            clearSelection(easyButton , mediumButton , hardButton);
-            setSelected(mediumButton);
-        });
-
-        hardButton.setOnAction(e -> {
-            selectedDifficulty[0] = "Hard";
-            clearSelection(easyButton , mediumButton , hardButton);
-            setSelected(hardButton);
-        });
 
         geminiButton.setOnAction(e -> {
             selectedEngine[0] = "Gemini";
@@ -121,11 +97,11 @@ public class LLMSetupScreen extends StackPane {
         HBox actionRow = new HBox(18);
         actionRow.setAlignment(Pos.CENTER);
 
-        Button backButton = new Button("←  Back");
+        Button backButton = new Button("Back");
         backButton.getStyleClass().add("setup-back-button");
         backButton.setOnAction(e -> NavigationManager.goTo(new ModeSelectScreen()));
 
-        Button generateButton = new Button("✨  Generate Quiz");
+        Button generateButton = new Button("Generate Quiz");
         generateButton.getStyleClass().add("setup-start-button");
 
         LoadingOverlay overlay = new LoadingOverlay("Generating AI Questions...");
@@ -138,9 +114,17 @@ public class LLMSetupScreen extends StackPane {
                 return;
             }
 
+            String difficultyText = customDifficultyField.getText();
+
+            if (difficultyText == null || difficultyText.isBlank()) {
+                errorLabel.setText("Enter a difficulty first");
+                return;
+            }
+
+            final String difficultyForAI = difficultyText.trim();
             errorLabel.setText("");
             overlay.show();
-            overlay.setMessage("Generating questions on " + topic.trim() + "...");
+            overlay.setMessage("Generating " + difficultyForAI + " questions on " + topic.trim() + "...");
             generateButton.setDisable(true);
 
             Task<List<Question>> task = new Task<>() {
@@ -149,9 +133,9 @@ public class LLMSetupScreen extends StackPane {
                     String raw;
 
                     if (selectedEngine[0].equalsIgnoreCase("Gemini")) {
-                        raw = GeminiClient.generateQuiz(topic.trim() , selectedDifficulty[0]);
+                        raw = GeminiClient.generateQuiz(topic.trim() , difficultyForAI);
                     } else {
-                        raw = GemmaClient.generateQuiz(topic.trim() , selectedDifficulty[0]);
+                        raw = GemmaClient.generateQuiz(topic.trim() , difficultyForAI);
                     }
 
                     return QuizParser.parseQuestions(raw);
@@ -198,7 +182,7 @@ public class LLMSetupScreen extends StackPane {
                 topicTitle,
                 topicField,
                 difficultyTitle,
-                difficultyRow,
+                customDifficultyField,
                 engineTitle,
                 engineRow,
                 info,
@@ -214,12 +198,9 @@ public class LLMSetupScreen extends StackPane {
 
     private Button createSelectButton(String text) {
         Button button = new Button(text);
-
         button.getStyleClass().add("setup-pill-button");
-
         button.setMinWidth(220);
         button.setMinHeight(70);
-
         return button;
     }
 
@@ -231,7 +212,7 @@ public class LLMSetupScreen extends StackPane {
 
     private void setSelected(Button button) {
         if (!button.getStyleClass().contains("setup-pill-selected")) {
-        button.getStyleClass().add("setup-pill-selected");
+            button.getStyleClass().add("setup-pill-selected");
+        }
     }
-}
 }
