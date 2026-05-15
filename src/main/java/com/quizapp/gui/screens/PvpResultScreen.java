@@ -66,7 +66,10 @@ public class PvpResultScreen extends StackPane {
                 NavigationManager.goTo(new HomeScreen())
         );
 
-        buttons.getChildren().addAll(modes , home);
+        Button dashboard = new Button("Dashboard");
+        dashboard.getStyleClass().add("secondary-button");
+        dashboard.setOnAction(e -> NavigationManager.goTo(new DashboardScreen()));
+        buttons.getChildren().addAll(modes , dashboard , home);
 
         content.getChildren().addAll(
                 title,

@@ -1,6 +1,4 @@
 package com.quizapp.gui;
-
-import com.quizapp.gui.screens.ProfileSelectScreen;
 import com.quizapp.gui.screens.SplashScreen;
 
 import javafx.application.Application;

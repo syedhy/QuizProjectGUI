@@ -80,4 +80,8 @@ public class QuizModeConfig {
     public static QuizModeConfig elo() {
         return new QuizModeConfig("ELO Mode", 5, 0, 0, false, true);
     }
+
+    public static QuizModeConfig phoneQr() {
+        return new QuizModeConfig("Phone QR Mode", 10, 0, 0, false, false);
+    }
 }

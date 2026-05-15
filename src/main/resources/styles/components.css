@@ -1675,3 +1675,38 @@
     -fx-background-insets: 0;
     -fx-effect: dropshadow(gaussian , -color-glow-primary , 20 , 0.30 , 0 , 0);
 }
+
+.phone-feedback-neutral {
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-border-color: rgba(255,255,255,0.16);
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-padding: 18 34 18 34;
+}
+
+.phone-feedback-correct {
+    -fx-background-color: -color-success-bg;
+    -fx-border-color: -color-success-border;
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+    -fx-text-fill: -color-success-text;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-padding: 20 38 20 38;
+    -fx-effect: dropshadow(gaussian , -color-glow-success , 28 , 0.24 , 0 , 8);
+}
+
+.phone-feedback-wrong {
+    -fx-background-color: -color-danger-bg;
+    -fx-border-color: -color-danger-border;
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+    -fx-text-fill: -color-danger-text;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-padding: 20 38 20 38;
+    -fx-effect: dropshadow(gaussian , -color-glow-danger , 28 , 0.24 , 0 , 8);
+}

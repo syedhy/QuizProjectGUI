@@ -1,7 +1,7 @@
 package com.quizapp.gui.screens;
 
+import java.util.Collections;
 import java.util.List;
-
 import com.quizapp.gui.NavigationManager;
 import com.quizapp.gui.QuizModeConfig;
 import com.quizapp.gui.components.GlassCard;
@@ -128,13 +128,21 @@ public class QuizSetupScreen extends StackPane {
         });
 
         startButton.setOnAction(e -> {
-            String path = buildPath(selectedSubject[0] , selectedDifficulty[0]);
+            String path = buildPath(selectedSubject[0], selectedDifficulty[0]);
             List<Question> questions = ListMaker.makeList(path);
 
             if (config.getModeName().equals("Player Vs Player")) {
-                NavigationManager.goTo(new PvpQuizScreen(config , questions));
+                NavigationManager.goTo(new PvpQuizScreen(config, questions));
+            } else if (config.getModeName().equals("Phone QR Mode")) {
+                Collections.shuffle(questions);
+
+                if (questions.size() > config.getQuestionLimit()) {
+                    questions = questions.subList(0, config.getQuestionLimit());
+                }
+
+                NavigationManager.goTo(new PhoneQuizHostScreen(questions));
             } else {
-                NavigationManager.goTo(new QuizScreen(config , questions));
+                NavigationManager.goTo(new QuizScreen(config, questions));
             }
         });
 
@@ -204,6 +212,7 @@ public class QuizSetupScreen extends StackPane {
         if (config.getModeName().equals("Sudden Death")) return "One wrong answer ends the quiz immediately. Choose carefully";
         if (config.getModeName().equals("Player Vs Player")) return "Two players take turns answering questions. The higher score wins";
         if (config.getModeName().equals("ELO Mode")) return "Your ranked performance affects your ELO rating after the match";
+        if (config.getModeName().equals("Phone QR Mode")) return "Scan the QR code on your phone and answer the quiz there. Results will appear on both devices";
 
         return "Choose your setup and start the challenge";
     }

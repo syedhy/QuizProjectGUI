@@ -70,17 +70,6 @@ public class ResultScreen extends StackPane {
         HBox actions = new HBox(16);
         actions.setAlignment(Pos.CENTER);
 
-        Button retry = new Button("Play Again");
-        retry.getStyleClass().add("primary-button");
-
-        retry.setOnAction(e -> {
-            if (config.getModeName().equals("LLM Mode")) {
-                NavigationManager.goTo(new LLMSetupScreen());
-            } else {
-                NavigationManager.goTo(new QuizSetupScreen(config));
-            }
-        });
-
         Button modes = new Button("Choose Mode");
         modes.getStyleClass().add("secondary-button");
         modes.setOnAction(e -> NavigationManager.goTo(new ModeSelectScreen()));
@@ -89,7 +78,10 @@ public class ResultScreen extends StackPane {
         home.getStyleClass().add("secondary-button");
         home.setOnAction(e -> NavigationManager.goTo(new HomeScreen()));
 
-        actions.getChildren().addAll(retry , modes , home);
+        Button dashboard = new Button("Dashboard");
+        dashboard.getStyleClass().add("primary-button");
+        dashboard.setOnAction(e -> NavigationManager.goTo(new DashboardScreen()));
+        actions.getChildren().addAll(dashboard , modes, home);
 
         content.getChildren().addAll(title , message , scoreLabel , statsRow , eloBox , actions);
 

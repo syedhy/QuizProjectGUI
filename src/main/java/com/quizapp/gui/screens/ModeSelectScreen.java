@@ -87,6 +87,13 @@ public class ModeSelectScreen extends StackPane {
                         "Battle another player locally on the same device",
                         "MULTIPLAYER",
                         QuizModeConfig.pvp()
+                ),
+
+                createPhoneCard(
+                        "📱",
+                        "Phone QR Mode",
+                        "Scan a QR code and answer the quiz from your phone",
+                        "MOBILE"
                 )
         );
 
@@ -140,5 +147,24 @@ public class ModeSelectScreen extends StackPane {
         });
 
         return card;
+    }
+
+    private ModeCard createPhoneCard(
+                    String icon,
+                    String title,
+                    String description,
+                    String tag) {
+
+            ModeCard card = new ModeCard(
+                            icon,
+                            title,
+                            description,
+                            tag);
+
+            card.setOnMouseClicked(e -> NavigationManager.goTo(
+                            new QuizSetupScreen(
+                                            QuizModeConfig.phoneQr())));
+
+            return card;
     }
 }
