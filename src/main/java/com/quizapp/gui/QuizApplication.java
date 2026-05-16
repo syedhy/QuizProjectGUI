@@ -49,6 +49,7 @@ public class QuizApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.centerOnScreen();
+        stage.setFullScreen(true);
         SoundManager.startMusic();
         stage.show();
     }
