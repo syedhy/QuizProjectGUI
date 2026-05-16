@@ -16,8 +16,9 @@ import javafx.util.Duration;
 public class ModeCard extends VBox {
 
     public ModeCard(String icon , String title , String description , String tag) {
-        setSpacing(14);
-        setPadding(new Insets(28));
+
+        setSpacing(10);
+        setPadding(new Insets(18));
         setAlignment(Pos.TOP_LEFT);
 
         getStyleClass().add("mode-card");
@@ -30,11 +31,14 @@ public class ModeCard extends VBox {
 
         Label descLabel = new Label(description);
         descLabel.getStyleClass().add("mode-description");
+
         descLabel.setWrapText(true);
         descLabel.setTextOverrun(OverrunStyle.CLIP);
-        descLabel.setMaxWidth(285);
-        descLabel.setMinHeight(78);
-        descLabel.setPrefHeight(78);
+
+        descLabel.setMaxWidth(240);
+
+        descLabel.setMinHeight(64);
+        descLabel.setPrefHeight(64);
 
         Region spacer = new Region();
         VBox.setVgrow(spacer , Priority.ALWAYS);
@@ -42,7 +46,13 @@ public class ModeCard extends VBox {
         Label tagLabel = new Label(tag);
         tagLabel.getStyleClass().add("mode-tag");
 
-        getChildren().addAll(iconLabel , titleLabel , descLabel , spacer , tagLabel);
+        getChildren().addAll(
+                iconLabel,
+                titleLabel,
+                descLabel,
+                spacer,
+                tagLabel
+        );
 
         if (AppSettings.isAnimationsEnabled()) {
             addHoverAnimation();
@@ -50,12 +60,24 @@ public class ModeCard extends VBox {
     }
 
     private void addHoverAnimation() {
+
         setOnMouseEntered(e -> {
-            ScaleTransition scale = new ScaleTransition(Duration.millis(160) , this);
+
+            ScaleTransition scale =
+                    new ScaleTransition(
+                            Duration.millis(160),
+                            this
+                    );
+
             scale.setToX(1.035);
             scale.setToY(1.035);
 
-            TranslateTransition lift = new TranslateTransition(Duration.millis(160) , this);
+            TranslateTransition lift =
+                    new TranslateTransition(
+                            Duration.millis(160),
+                            this
+                    );
+
             lift.setToY(-8);
 
             scale.play();
@@ -63,11 +85,22 @@ public class ModeCard extends VBox {
         });
 
         setOnMouseExited(e -> {
-            ScaleTransition scale = new ScaleTransition(Duration.millis(160) , this);
+
+            ScaleTransition scale =
+                    new ScaleTransition(
+                            Duration.millis(160),
+                            this
+                    );
+
             scale.setToX(1);
             scale.setToY(1);
 
-            TranslateTransition lift = new TranslateTransition(Duration.millis(160) , this);
+            TranslateTransition lift =
+                    new TranslateTransition(
+                            Duration.millis(160),
+                            this
+                    );
+
             lift.setToY(0);
 
             scale.play();

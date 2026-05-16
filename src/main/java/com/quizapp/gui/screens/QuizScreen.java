@@ -47,7 +47,7 @@ public class QuizScreen extends StackPane {
     private final Label modeLabel = new Label();
     private final Label questionLabel = new Label();
 
-    private final VBox optionsBox = new VBox(18);
+    private final VBox optionsBox = new VBox(12);
     private final ProgressBar progressBar = new ProgressBar();
 
     private GlassCard questionCard;
@@ -69,20 +69,20 @@ public class QuizScreen extends StackPane {
 
         AnimatedBackground bg = new AnimatedBackground();
 
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(28));
+        VBox root = new VBox(14);
+        root.setPadding(new Insets(18));
         root.setAlignment(Pos.TOP_CENTER);
 
         GlassCard hudCard = new GlassCard();
         hudCard.setMaxWidth(1100);
 
-        VBox hudContent = new VBox(18);
+        VBox hudContent = new VBox(10);
         hudContent.setAlignment(Pos.CENTER);
 
         modeLabel.setText(config.getModeName());
         modeLabel.getStyleClass().add("quiz-mode-title");
 
-        HBox statsRow = new HBox(28);
+        HBox statsRow = new HBox(18);
         statsRow.setAlignment(Pos.CENTER);
 
         progressLabel.getStyleClass().add("quiz-hud-text");
@@ -93,7 +93,7 @@ public class QuizScreen extends StackPane {
 
         progressBar.getStyleClass().add("quiz-progress-modern");
         progressBar.setPrefWidth(860);
-        progressBar.setPrefHeight(30);
+        progressBar.setPrefHeight(22);
 
         hudContent.getChildren().addAll(modeLabel , statsRow , progressBar);
         hudCard.getChildren().add(hudContent);
@@ -101,15 +101,15 @@ public class QuizScreen extends StackPane {
         questionCard = new GlassCard();
         questionCard.setMaxWidth(1100);
 
-        VBox questionContent = new VBox(18);
+        VBox questionContent = new VBox(12);
         questionContent.setAlignment(Pos.CENTER);
 
         questionLabel.getStyleClass().add("quiz-question-text");
         questionLabel.setWrapText(true);
         questionLabel.setTextOverrun(javafx.scene.control.OverrunStyle.CLIP);
         questionLabel.setMaxWidth(1000);
-        questionLabel.setMinHeight(120);
-        questionLabel.setPrefHeight(120);
+        questionLabel.setMinHeight(82);
+        questionLabel.setPrefHeight(82);
 
         optionsBox.setAlignment(Pos.CENTER);
         optionsBox.setMaxWidth(920);
@@ -168,7 +168,7 @@ public class QuizScreen extends StackPane {
 
             Button button = new Button(optionLetter + ". " + optionText);
             button.getStyleClass().add("quiz-option-button");
-            button.setMinHeight(82);
+            button.setMinHeight(62);
             button.setMaxWidth(Double.MAX_VALUE);
             button.setWrapText(true);
             button.setAlignment(Pos.CENTER_LEFT);

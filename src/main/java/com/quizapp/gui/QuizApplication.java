@@ -21,8 +21,8 @@ public class QuizApplication extends Application {
 
         Scene scene = new Scene(
                 new SplashScreen() ,
-                1700,
-                1000
+                1500,
+                750
         );
 
         scene.getStylesheets().addAll(
@@ -47,7 +47,9 @@ public class QuizApplication extends Application {
 
         stage.setTitle("Quiz Project");
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(true);
+        stage.setMaximized(false);
+        stage.setFullScreen(true);
         stage.centerOnScreen();
         SoundManager.startMusic();
         stage.show();

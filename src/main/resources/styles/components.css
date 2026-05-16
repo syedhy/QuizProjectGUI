@@ -1710,3 +1710,19 @@
     -fx-padding: 20 38 20 38;
     -fx-effect: dropshadow(gaussian , -color-glow-danger , 28 , 0.24 , 0 , 8);
 }
+.mode-card {
+    -fx-pref-width: 280;
+    -fx-pref-height: 205;
+}
+.quiz-mode-title {
+    -fx-font-size: 38px;
+}
+
+.quiz-question-text {
+    -fx-font-size: 28px;
+}
+
+.quiz-option-button {
+    -fx-font-size: 18px;
+    -fx-padding: 16 24 16 24;
+}
